@@ -2,6 +2,7 @@
 Sistema de Gestión de biblioteca desarrollado en C# .NET Framework Windows Forms, con conexión a base de datos "SQL Server". Presenta varios perfiles de usuario, ABM de socios, libros y empleados, préstamo y devolución de libros, entre otras cosas.
 
 En el archivo se encuentran ademas la base de datos del proyecto, las contraseñas de acceso, el manual de usuario y la ers.
+Si desea descargar y probar el sistema se recomienda eliminar la carpeta "models" y volver a hacer el mapeo de la base de datos mediante Entity Framework
 
 Imágenes del proyecto:
 
