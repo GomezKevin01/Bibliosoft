@@ -1,0 +1,6 @@
+usuario/contraseña; ROLES
+admin/admin 	    Administrador
+juan/1234	    Encargado del stock
+jose/1234	    Bibliotecario
+
+Contraseña de acceso para nuevo registro: 1234
