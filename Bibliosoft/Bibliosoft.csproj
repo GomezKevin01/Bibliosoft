@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1084AD13-B147-4390-A1E7-C73399A46892}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Bibliosoft</RootNamespace>
+    <AssemblyName>Bibliosoft</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI">
+      <HintPath>..\..\..\..\Downloads\Guna.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ajustes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ajustes.Designer.cs">
+      <DependentUpon>Ajustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="autores.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BibliotecaClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BibliotecaClave.Designer.cs">
+      <DependentUpon>BibliotecaClave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="configuracion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion.Designer.cs">
+      <DependentUpon>configuracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="detallePrestamo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empleado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Empleado.Designer.cs">
+      <DependentUpon>Empleado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpleadoBuscar.Designer.cs">
+      <DependentUpon>EmpleadoBuscar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoMensajePersonalizado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpleadoMensajePersonalizado.Designer.cs">
+      <DependentUpon>EmpleadoMensajePersonalizado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpleadoModificar.Designer.cs">
+      <DependentUpon>EmpleadoModificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmpleadoRegistrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpleadoRegistrar.Designer.cs">
+      <DependentUpon>EmpleadoRegistrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="empleados.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LibroDevolver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroDevolver.Designer.cs">
+      <DependentUpon>LibroDevolver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibroMensajePersonalizado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroMensajePersonalizado.Designer.cs">
+      <DependentUpon>LibroMensajePersonalizado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibroModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroModificar.Designer.cs">
+      <DependentUpon>LibroModificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibroPrestar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroPrestar.Designer.cs">
+      <DependentUpon>LibroPrestar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="libross.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prestamos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prestamosPersistente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prestamosPorSocio.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="proveedores.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SocioAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocioAñadir.Designer.cs">
+      <DependentUpon>SocioAñadir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocioBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocioBuscar.Designer.cs">
+      <DependentUpon>SocioBuscar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include=".Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="libro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="libro.Designer.cs">
+      <DependentUpon>libro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibroAñadir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroAñadir.Designer.cs">
+      <DependentUpon>LibroAñadir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibroBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibroBuscar.Designer.cs">
+      <DependentUpon>LibroBuscar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocioMensajePersonalizado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocioMensajePersonalizado.Designer.cs">
+      <DependentUpon>SocioMensajePersonalizado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Prestamo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Prestamo.Designer.cs">
+      <DependentUpon>Prestamo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="socio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="socio.Designer.cs">
+      <DependentUpon>socio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SocioModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocioModificar.Designer.cs">
+      <DependentUpon>SocioModificar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="socioss.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="verPrestamos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vistaEmpleados.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vistaLibros.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vistaSocios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Ajustes.resx">
+      <DependentUpon>Ajustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BibliotecaClave.resx">
+      <DependentUpon>BibliotecaClave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="configuracion.resx">
+      <DependentUpon>configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empleado.resx">
+      <DependentUpon>Empleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpleadoBuscar.resx">
+      <DependentUpon>EmpleadoBuscar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpleadoMensajePersonalizado.resx">
+      <DependentUpon>EmpleadoMensajePersonalizado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpleadoModificar.resx">
+      <DependentUpon>EmpleadoModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpleadoRegistrar.resx">
+      <DependentUpon>EmpleadoRegistrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroDevolver.resx">
+      <DependentUpon>LibroDevolver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroMensajePersonalizado.resx">
+      <DependentUpon>LibroMensajePersonalizado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroModificar.resx">
+      <DependentUpon>LibroModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroPrestar.resx">
+      <DependentUpon>LibroPrestar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocioAñadir.resx">
+      <DependentUpon>SocioAñadir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocioBuscar.resx">
+      <DependentUpon>SocioBuscar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="libro.resx">
+      <DependentUpon>libro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroAñadir.resx">
+      <DependentUpon>LibroAñadir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibroBuscar.resx">
+      <DependentUpon>LibroBuscar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocioMensajePersonalizado.resx">
+      <DependentUpon>SocioMensajePersonalizado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prestamo.resx">
+      <DependentUpon>Prestamo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="socio.resx">
+      <DependentUpon>socio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocioModificar.resx">
+      <DependentUpon>SocioModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-busca-mas-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-agregar-administrador-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-añadir-libro-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-tomar-prestado-un-libro-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-devolver-libro-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-salida-501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-usuario-masculino-en-círculo-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-visible-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-contraseña-251.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-usuario-masculino-en-círculo-251.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prestas blanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\devolver blanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\añadir libro blanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buscar blanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\añadir socio blanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
