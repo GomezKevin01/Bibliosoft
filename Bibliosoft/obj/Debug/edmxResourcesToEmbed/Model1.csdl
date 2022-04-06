@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="biblioteca1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="libross">
+    <Key>
+      <PropertyRef Name="idLibro" />
+    </Key>
+    <Property Name="idLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="año" Type="Int32" />
+    <Property Name="editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idProveedor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="proveedores" Relationship="Self.FK_libros_proveedores" FromRole="libross" ToRole="proveedores" />
+    <Property Name="idAutor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="autores" Relationship="biblioteca1Model.FK_libros_autores" FromRole="libross" ToRole="autores" />
+    <Property Name="estado" Type="Int32" />
+    <NavigationProperty Name="detallePrestamo" Relationship="biblioteca1Model.Fk_detallePrestamo_libross" FromRole="libross" ToRole="detallePrestamo" />
+  </EntityType>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="idProveedor" />
+    </Key>
+    <Property Name="idProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="libross" Relationship="Self.FK_libros_proveedores" FromRole="proveedores" ToRole="libross" />
+  </EntityType>
+  <EntityType Name="socioss">
+    <Key>
+      <PropertyRef Name="idSocio" />
+    </Key>
+    <Property Name="idSocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+    <Property Name="tipoSocio" Type="Int32" Nullable="false" />
+    <Property Name="dni" Type="Int32" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="prestamos" Relationship="biblioteca1Model.FK_prestamos_socios" FromRole="socioss" ToRole="prestamos" />
+  </EntityType>
+  <Association Name="FK_libros_proveedores">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+    <End Role="libross" Type="Self.libross" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="idProveedor" />
+      </Principal>
+      <Dependent Role="libross">
+        <PropertyRef Name="idProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="biblioteca1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="libross" EntityType="Self.libross" />
+    <EntitySet Name="proveedores" EntityType="Self.proveedores" />
+    <EntitySet Name="socioss" EntityType="Self.socioss" />
+    <AssociationSet Name="FK_libros_proveedores" Association="Self.FK_libros_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="libross" EntitySet="libross" />
+    </AssociationSet>
+    <EntitySet Name="autores" EntityType="biblioteca1Model.autores" />
+    <AssociationSet Name="FK_libros_autores" Association="biblioteca1Model.FK_libros_autores">
+      <End Role="autores" EntitySet="autores" />
+      <End Role="libross" EntitySet="libross" />
+    </AssociationSet>
+    <EntitySet Name="empleados" EntityType="biblioteca1Model.empleados" />
+    <EntitySet Name="prestamos" EntityType="biblioteca1Model.prestamos" />
+    <AssociationSet Name="FK_prestamos_socios" Association="biblioteca1Model.FK_prestamos_socios">
+      <End Role="socioss" EntitySet="socioss" />
+      <End Role="prestamos" EntitySet="prestamos" />
+    </AssociationSet>
+    <EntitySet Name="detallePrestamo" EntityType="biblioteca1Model.detallePrestamo" />
+    <AssociationSet Name="Fk_detallePrestamo_libross" Association="biblioteca1Model.Fk_detallePrestamo_libross">
+      <End Role="libross" EntitySet="libross" />
+      <End Role="detallePrestamo" EntitySet="detallePrestamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detallePrestamo_prestamos" Association="biblioteca1Model.FK_detallePrestamo_prestamos">
+      <End Role="prestamos" EntitySet="prestamos" />
+      <End Role="detallePrestamo" EntitySet="detallePrestamo" />
+    </AssociationSet>
+    <EntitySet Name="prestamosPorSocio" EntityType="biblioteca1Model.prestamosPorSocio" />
+    <EntitySet Name="verPrestamos" EntityType="biblioteca1Model.verPrestamos" />
+    <EntitySet Name="vistaLibros" EntityType="biblioteca1Model.vistaLibros" />
+    <EntitySet Name="vistaEmpleados" EntityType="biblioteca1Model.vistaEmpleados" />
+    <EntitySet Name="vistaSocios" EntityType="biblioteca1Model.vistaSocios" />
+    <EntitySet Name="configuracion" EntityType="biblioteca1Model.configuracion" />
+    <EntitySet Name="prestamosPersistente" EntityType="biblioteca1Model.prestamosPersistente" />
+  </EntityContainer>
+  <EntityType Name="autores">
+    <Key>
+      <PropertyRef Name="idAutor" />
+    </Key>
+    <Property Name="idAutor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dni" Type="Int32" Nullable="false" />
+    <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="pais" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="libross" Relationship="biblioteca1Model.FK_libros_autores" FromRole="autores" ToRole="libross" />
+  </EntityType>
+  <Association Name="FK_libros_autores">
+    <End Type="biblioteca1Model.autores" Role="autores" Multiplicity="1" />
+    <End Type="biblioteca1Model.libross" Role="libross" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="autores">
+        <PropertyRef Name="idAutor" />
+      </Principal>
+      <Dependent Role="libross">
+        <PropertyRef Name="idAutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="empleados">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipoEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apeYnombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="Int32" Nullable="false" />
+    <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="prestamos">
+    <Key>
+      <PropertyRef Name="idPrestamo" />
+    </Key>
+    <Property Name="idPrestamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fechaPrestamo" Type="DateTime" Precision="0" />
+    <Property Name="fechaVencimiento" Type="DateTime" Precision="0" />
+    <Property Name="idSocio" Type="Int32" />
+    <NavigationProperty Name="socioss" Relationship="biblioteca1Model.FK_prestamos_socios" FromRole="prestamos" ToRole="socioss" />
+    <NavigationProperty Name="detallePrestamo" Relationship="biblioteca1Model.FK_detallePrestamo_prestamos" FromRole="prestamos" ToRole="detallePrestamo" />
+  </EntityType>
+  <Association Name="FK_prestamos_socios">
+    <End Type="biblioteca1Model.socioss" Role="socioss" Multiplicity="0..1" />
+    <End Type="biblioteca1Model.prestamos" Role="prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="socioss">
+        <PropertyRef Name="idSocio" />
+      </Principal>
+      <Dependent Role="prestamos">
+        <PropertyRef Name="idSocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="detallePrestamo">
+    <Key>
+      <PropertyRef Name="idDetalle" />
+    </Key>
+    <Property Name="idDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPrestamo" Type="Int32" />
+    <Property Name="idLibro" Type="Int32" />
+    <NavigationProperty Name="libross" Relationship="biblioteca1Model.Fk_detallePrestamo_libross" FromRole="detallePrestamo" ToRole="libross" />
+    <NavigationProperty Name="prestamos" Relationship="biblioteca1Model.FK_detallePrestamo_prestamos" FromRole="detallePrestamo" ToRole="prestamos" />
+  </EntityType>
+  <Association Name="Fk_detallePrestamo_libross">
+    <End Type="biblioteca1Model.libross" Role="libross" Multiplicity="0..1" />
+    <End Type="biblioteca1Model.detallePrestamo" Role="detallePrestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libross">
+        <PropertyRef Name="idLibro" />
+      </Principal>
+      <Dependent Role="detallePrestamo">
+        <PropertyRef Name="idLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detallePrestamo_prestamos">
+    <End Type="biblioteca1Model.prestamos" Role="prestamos" Multiplicity="0..1" />
+    <End Type="biblioteca1Model.detallePrestamo" Role="detallePrestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prestamos">
+        <PropertyRef Name="idPrestamo" />
+      </Principal>
+      <Dependent Role="detallePrestamo">
+        <PropertyRef Name="idPrestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="prestamosPorSocio">
+    <Key>
+      <PropertyRef Name="idPrestamo" />
+      <PropertyRef Name="Socio" />
+      <PropertyRef Name="dni" />
+      <PropertyRef Name="Vencido" />
+    </Key>
+    <Property Name="idPrestamo" Type="Int32" Nullable="false" />
+    <Property Name="Socio" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="Int32" Nullable="false" />
+    <Property Name="Vencido" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="verPrestamos">
+    <Key>
+      <PropertyRef Name="ID_del_libro" />
+      <PropertyRef Name="Título" />
+    </Key>
+    <Property Name="ID_del_prestamo" Type="Int32" />
+    <Property Name="ID_del_libro" Type="Int32" Nullable="false" />
+    <Property Name="Título" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vistaLibros">
+    <Key>
+      <PropertyRef Name="ID_del_libro" />
+      <PropertyRef Name="Título" />
+      <PropertyRef Name="Editorial" />
+      <PropertyRef Name="Autor" />
+      <PropertyRef Name="Proveedor" />
+      <PropertyRef Name="Prestado" />
+    </Key>
+    <Property Name="ID_del_libro" Type="Int32" Nullable="false" />
+    <Property Name="Título" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Año" Type="Int32" />
+    <Property Name="Editorial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Autor" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+    <Property Name="Proveedor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Prestado" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vistaEmpleados">
+    <Key>
+      <PropertyRef Name="ID_del_Empleado" />
+      <PropertyRef Name="DNI" />
+      <PropertyRef Name="Apellido_y_nombre" />
+      <PropertyRef Name="Usuario" />
+      <PropertyRef Name="Fecha_de_nacimiento" />
+      <PropertyRef Name="Dirección" />
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="ID_del_Empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo_de_Empleado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="Int32" Nullable="false" />
+    <Property Name="Apellido_y_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_de_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Dirección" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vistaSocios">
+    <Key>
+      <PropertyRef Name="idSocio" />
+      <PropertyRef Name="tipoDeSocio" />
+      <PropertyRef Name="DNI" />
+      <PropertyRef Name="Apellido" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Dirección" />
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="idSocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipoDeSocio" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="Int32" Nullable="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Dirección" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="configuracion">
+    <Key>
+      <PropertyRef Name="idFantasma" />
+    </Key>
+    <Property Name="idFantasma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="claveRigistroEmpleado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="diasProxVencimiento" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="prestamosPersistente">
+    <Key>
+      <PropertyRef Name="idPrestamo" />
+    </Key>
+    <Property Name="idPrestamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fechaPrestamo" Type="DateTime" Precision="0" />
+  </EntityType>
+</Schema>

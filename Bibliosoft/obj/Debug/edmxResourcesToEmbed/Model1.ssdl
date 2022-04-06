@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="biblioteca1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="autores">
+    <Key>
+      <PropertyRef Name="idAutor" />
+    </Key>
+    <Property Name="idAutor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dni" Type="int" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fechaNacimiento" Type="date" />
+    <Property Name="pais" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="configuracion">
+    <Key>
+      <PropertyRef Name="idFantasma" />
+    </Key>
+    <Property Name="idFantasma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="claveRigistroEmpleado" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="diasProxVencimiento" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detallePrestamo">
+    <Key>
+      <PropertyRef Name="idDetalle" />
+    </Key>
+    <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idPrestamo" Type="int" />
+    <Property Name="idLibro" Type="int" />
+  </EntityType>
+  <EntityType Name="empleados">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipoEmpleado" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contraseña" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="apeYnombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="dni" Type="int" Nullable="false" />
+    <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="libross">
+    <Key>
+      <PropertyRef Name="idLibro" />
+    </Key>
+    <Property Name="idLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="año" Type="int" />
+    <Property Name="editorial" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idAutor" Type="int" Nullable="false" />
+    <Property Name="idProveedor" Type="int" Nullable="false" />
+    <Property Name="estado" Type="int" />
+  </EntityType>
+  <EntityType Name="prestamos">
+    <Key>
+      <PropertyRef Name="idPrestamo" />
+    </Key>
+    <Property Name="idPrestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaPrestamo" Type="date" />
+    <Property Name="fechaVencimiento" Type="date" />
+    <Property Name="idSocio" Type="int" />
+  </EntityType>
+  <EntityType Name="prestamosPersistente">
+    <Key>
+      <PropertyRef Name="idPrestamo" />
+    </Key>
+    <Property Name="idPrestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaPrestamo" Type="date" />
+  </EntityType>
+  <EntityType Name="proveedores">
+    <Key>
+      <PropertyRef Name="idProveedor" />
+    </Key>
+    <Property Name="idProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="socioss">
+    <Key>
+      <PropertyRef Name="idSocio" />
+    </Key>
+    <Property Name="idSocio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dni" Type="int" Nullable="false" />
+    <Property Name="tipoSocio" Type="int" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fechaNacimiento" Type="date" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'biblioteca1.dbo.prestamosPorSocio' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="prestamosPorSocio">
+    <Key>
+      <PropertyRef Name="idPrestamo" />
+      <PropertyRef Name="dni" />
+      <PropertyRef Name="Socio" />
+      <PropertyRef Name="Vencido" />
+    </Key>
+    <Property Name="idPrestamo" Type="int" Nullable="false" />
+    <Property Name="dni" Type="int" Nullable="false" />
+    <Property Name="Socio" Type="varchar" MaxLength="101" Nullable="false" />
+    <Property Name="Vencido" Type="varchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'biblioteca1.dbo.verPrestamos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="verPrestamos">
+    <Key>
+      <PropertyRef Name="ID del libro" />
+      <PropertyRef Name="Título" />
+    </Key>
+    <Property Name="ID del prestamo" Type="int" />
+    <Property Name="ID del libro" Type="int" Nullable="false" />
+    <Property Name="Título" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'biblioteca1.dbo.vistaEmpleados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vistaEmpleados">
+    <Key>
+      <PropertyRef Name="ID del Empleado" />
+      <PropertyRef Name="DNI" />
+      <PropertyRef Name="Apellido y nombre" />
+      <PropertyRef Name="Usuario" />
+      <PropertyRef Name="Fecha de nacimiento" />
+      <PropertyRef Name="Dirección" />
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="ID del Empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo de Empleado" Type="varchar" MaxLength="15" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="Apellido y nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha de nacimiento" Type="date" Nullable="false" />
+    <Property Name="Dirección" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'biblioteca1.dbo.vistaLibros' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vistaLibros">
+    <Key>
+      <PropertyRef Name="ID del libro" />
+      <PropertyRef Name="Título" />
+      <PropertyRef Name="Editorial" />
+      <PropertyRef Name="Autor" />
+      <PropertyRef Name="Proveedor" />
+      <PropertyRef Name="Prestado" />
+    </Key>
+    <Property Name="ID del libro" Type="int" Nullable="false" />
+    <Property Name="Título" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Año" Type="int" />
+    <Property Name="Editorial" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Autor" Type="varchar" MaxLength="101" Nullable="false" />
+    <Property Name="Proveedor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prestado" Type="varchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'biblioteca1.dbo.vistaSocios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vistaSocios">
+    <Key>
+      <PropertyRef Name="idSocio" />
+      <PropertyRef Name="tipoDeSocio" />
+      <PropertyRef Name="DNI" />
+      <PropertyRef Name="Apellido" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Dirección" />
+      <PropertyRef Name="Telefono" />
+    </Key>
+    <Property Name="idSocio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipoDeSocio" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="DNI" Type="int" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fechaNacimiento" Type="date" />
+    <Property Name="Dirección" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="Fk_detallePrestamo_libross">
+    <End Role="libross" Type="Self.libross" Multiplicity="0..1" />
+    <End Role="detallePrestamo" Type="Self.detallePrestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libross">
+        <PropertyRef Name="idLibro" />
+      </Principal>
+      <Dependent Role="detallePrestamo">
+        <PropertyRef Name="idLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_detallePrestamo_prestamos">
+    <End Role="prestamos" Type="Self.prestamos" Multiplicity="0..1" />
+    <End Role="detallePrestamo" Type="Self.detallePrestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prestamos">
+        <PropertyRef Name="idPrestamo" />
+      </Principal>
+      <Dependent Role="detallePrestamo">
+        <PropertyRef Name="idPrestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_libros_autores">
+    <End Role="autores" Type="Self.autores" Multiplicity="1" />
+    <End Role="libross" Type="Self.libross" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="autores">
+        <PropertyRef Name="idAutor" />
+      </Principal>
+      <Dependent Role="libross">
+        <PropertyRef Name="idAutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_libros_proveedores">
+    <End Role="proveedores" Type="Self.proveedores" Multiplicity="1" />
+    <End Role="libross" Type="Self.libross" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proveedores">
+        <PropertyRef Name="idProveedor" />
+      </Principal>
+      <Dependent Role="libross">
+        <PropertyRef Name="idProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prestamos_socios">
+    <End Role="socioss" Type="Self.socioss" Multiplicity="0..1" />
+    <End Role="prestamos" Type="Self.prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="socioss">
+        <PropertyRef Name="idSocio" />
+      </Principal>
+      <Dependent Role="prestamos">
+        <PropertyRef Name="idSocio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="biblioteca1ModelStoreContainer">
+    <EntitySet Name="autores" EntityType="Self.autores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="configuracion" EntityType="Self.configuracion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detallePrestamo" EntityType="Self.detallePrestamo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empleados" EntityType="Self.empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="libross" EntityType="Self.libross" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prestamos" EntityType="Self.prestamos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prestamosPersistente" EntityType="Self.prestamosPersistente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="socioss" EntityType="Self.socioss" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prestamosPorSocio" EntityType="Self.prestamosPorSocio" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [prestamosPorSocio].[idPrestamo] AS [idPrestamo], 
+    [prestamosPorSocio].[dni] AS [dni], 
+    [prestamosPorSocio].[Socio] AS [Socio], 
+    [prestamosPorSocio].[Vencido] AS [Vencido]
+    FROM [dbo].[prestamosPorSocio] AS [prestamosPorSocio]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="verPrestamos" EntityType="Self.verPrestamos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [verPrestamos].[ID del prestamo] AS [ID del prestamo], 
+    [verPrestamos].[ID del libro] AS [ID del libro], 
+    [verPrestamos].[Título] AS [Título]
+    FROM [dbo].[verPrestamos] AS [verPrestamos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vistaEmpleados" EntityType="Self.vistaEmpleados" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vistaEmpleados].[ID del Empleado] AS [ID del Empleado], 
+    [vistaEmpleados].[Tipo de Empleado] AS [Tipo de Empleado], 
+    [vistaEmpleados].[DNI] AS [DNI], 
+    [vistaEmpleados].[Apellido y nombre] AS [Apellido y nombre], 
+    [vistaEmpleados].[Usuario] AS [Usuario], 
+    [vistaEmpleados].[Fecha de nacimiento] AS [Fecha de nacimiento], 
+    [vistaEmpleados].[Dirección] AS [Dirección], 
+    [vistaEmpleados].[Telefono] AS [Telefono]
+    FROM [dbo].[vistaEmpleados] AS [vistaEmpleados]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vistaLibros" EntityType="Self.vistaLibros" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vistaLibros].[ID del libro] AS [ID del libro], 
+    [vistaLibros].[Título] AS [Título], 
+    [vistaLibros].[Año] AS [Año], 
+    [vistaLibros].[Editorial] AS [Editorial], 
+    [vistaLibros].[Autor] AS [Autor], 
+    [vistaLibros].[Proveedor] AS [Proveedor], 
+    [vistaLibros].[Prestado] AS [Prestado]
+    FROM [dbo].[vistaLibros] AS [vistaLibros]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vistaSocios" EntityType="Self.vistaSocios" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vistaSocios].[idSocio] AS [idSocio], 
+    [vistaSocios].[tipoDeSocio] AS [tipoDeSocio], 
+    [vistaSocios].[DNI] AS [DNI], 
+    [vistaSocios].[Apellido] AS [Apellido], 
+    [vistaSocios].[Nombre] AS [Nombre], 
+    [vistaSocios].[fechaNacimiento] AS [fechaNacimiento], 
+    [vistaSocios].[Dirección] AS [Dirección], 
+    [vistaSocios].[Telefono] AS [Telefono]
+    FROM [dbo].[vistaSocios] AS [vistaSocios]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="Fk_detallePrestamo_libross" Association="Self.Fk_detallePrestamo_libross">
+      <End Role="libross" EntitySet="libross" />
+      <End Role="detallePrestamo" EntitySet="detallePrestamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_detallePrestamo_prestamos" Association="Self.FK_detallePrestamo_prestamos">
+      <End Role="prestamos" EntitySet="prestamos" />
+      <End Role="detallePrestamo" EntitySet="detallePrestamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_libros_autores" Association="Self.FK_libros_autores">
+      <End Role="autores" EntitySet="autores" />
+      <End Role="libross" EntitySet="libross" />
+    </AssociationSet>
+    <AssociationSet Name="FK_libros_proveedores" Association="Self.FK_libros_proveedores">
+      <End Role="proveedores" EntitySet="proveedores" />
+      <End Role="libross" EntitySet="libross" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prestamos_socios" Association="Self.FK_prestamos_socios">
+      <End Role="socioss" EntitySet="socioss" />
+      <End Role="prestamos" EntitySet="prestamos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
